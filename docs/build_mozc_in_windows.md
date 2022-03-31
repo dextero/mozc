@@ -39,16 +39,6 @@ cd c:\work
 git clone -c core.autocrlf=false https://github.com/google/mozc.git -b master --single-branch --recursive
 ```
 
-# Apply a patch to GYP
-
-The upstream GYP does not work on Windows for Mozc.
-You need to apply the following patch to GYP.
-
-```
-cd src\third_party\gyp
-git apply ..\..\gyp\gyp.patch
-```
-
 # Compilation
 
 First, you'll need to generate Visual C++ project files using a tool called [GYP](https://chromium.googlesource.com/external/gyp).

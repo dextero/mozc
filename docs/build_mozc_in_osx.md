@@ -52,16 +52,6 @@ make
 
 ## Build with GYP (stable)
 
-### Apply a patch to GYP
-
-The upstream GYP may or may not work on macOS for Mozc.
-You probably need to apply the following patch to GYP.
-
-```
-cd src\third_party\gyp
-git apply ..\..\gyp\gyp.patch
-```
-
 ### Build main converter and composition UI.
 
 First, you'll need to generate Xcode project using a tool called [GYP](https://chromium.googlesource.com/external/gyp).

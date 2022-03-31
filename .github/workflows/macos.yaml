@@ -26,8 +26,12 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
           echo "$PWD/depot_tools" >> $GITHUB_PATH
-          cd gyp
-          git apply ../../gyp/gyp.patch
+          # Make sure gyp-mac-tool has access to pyobjc package so that we
+          # don't get a "cannot import CoreFoundation" during build.
+          # Even when we run the build script with python3, gyp generates a
+          # gyp-mac-tool that uses python.
+          python -m pip install pyobjc
+          python3 -m pip install six
 
       - name: build
         working-directory: ./src
