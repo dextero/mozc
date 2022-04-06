@@ -12,7 +12,7 @@ concurrency:
 jobs:
   build:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
-    runs-on: macos-12
+    runs-on: macos-11
     timeout-minutes: 60
 
     steps:
@@ -26,12 +26,9 @@ jobs:
         run: |
           git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
           echo "$PWD/depot_tools" >> $GITHUB_PATH
-          # Make sure gyp-mac-tool has access to pyobjc package so that we
-          # don't get a "cannot import CoreFoundation" during build.
-          # Even when we run the build script with python3, gyp generates a
-          # gyp-mac-tool that uses python.
-          python -m pip install pyobjc
           python3 -m pip install six
+          cd gyp
+          git apply ../../gyp/gyp.patch
 
       - name: build
         working-directory: ./src
